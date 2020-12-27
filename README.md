@@ -6,7 +6,18 @@
 [![CTCGFW](https://img.shields.io/badge/OpenWrt-CTCGFW-orange.svg?style=flat&logo=appveyor)](https://github.com/project-openwrt/openwrt)
 
 >固件下载：
+[![GitHub release (latest by d
+
+>固件来源：
+[![Lean](https://img.shields.io/badge/Lede-Lean-red.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)
+[![Lienol](https://img.shields.io/badge/Package-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt-package)
+[![CTCGFW](https://img.shields.io/badge/OpenWrt-CTCGFW-orange.svg?style=flat&logo=appveyor)](https://github.com/project-openwrt/openwrt)
+
+>固件下载：
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Draco-china/OpenWrt-Actions-LeanAndSnapshot?style=for-the-badge&label=Download)](https://github.com/Draco-china/OpenWrt-Actions-LeanAndSnapshot/releases/latest)
+
+
+## 简介 (基于Template)ate)](https://img.shields.io/github/v/release/Draco-china/OpenWrt-Actions-LeanAndSnapshot?style=for-the-badge&label=Download)](https://github.com/Draco-china/OpenWrt-Actions-LeanAndSnapshot/releases/latest)
 
 
 ## 简介 (基于Template)
