@@ -1,82 +1,112 @@
-# Openwrt 路由器固件自动编译 [![OpenWrt](https://img.shields.io/badge/From-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt) 欢迎PR各种机型
-
->固件来源：
-[![Lean](https://img.shields.io/badge/Lede-Lean-red.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)
-[![Lienol](https://img.shields.io/badge/Package-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt-package)
-[![CTCGFW](https://img.shields.io/badge/OpenWrt-CTCGFW-orange.svg?style=flat&logo=appveyor)](https://github.com/project-openwrt/openwrt)
-
->固件下载：
-[![GitHub release (latest by d
-
->固件来源：
-[![Lean](https://img.shields.io/badge/Lede-Lean-red.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)
-[![Lienol](https://img.shields.io/badge/Package-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt-package)
-[![CTCGFW](https://img.shields.io/badge/OpenWrt-CTCGFW-orange.svg?style=flat&logo=appveyor)](https://github.com/project-openwrt/openwrt)
-
->固件下载：
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Draco-china/OpenWrt-Actions-LeanAndSnapshot?style=for-the-badge&label=Download)](https://github.com/Draco-china/OpenWrt-Actions-LeanAndSnapshot/releases/latest)
-
-
-## 简介 (基于Template)ate)](https://img.shields.io/github/v/release/Draco-china/OpenWrt-Actions-LeanAndSnapshot?style=for-the-badge&label=Download)](https://github.com/Draco-china/OpenWrt-Actions-LeanAndSnapshot/releases/latest)
-
-
-## 简介 (基于Template)
-
-- 通用 OpenWrt 定制项目
-- `Build-Openwrt-Lean`是基于[![Lean](https://img.shields.io/badge/Lede-Lean-red.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)编译
 - `Biuild-OpenWrt-Snapshot`是基于[![CTCGFW](https://img.shields.io/badge/OpenWrt-CTCGFW-orange.svg?style=flat&logo=appveyor)](https://github.com/project-openwrt/openwrt)编辑
-- 通过修改`diy-part1.sh`文件修改`feeds.conf.default`配置。默认添加`fw876/helloworld`
-- 通过修改`diy-part2.sh`文件可以自定义默认IP，登陆密码等。按我的需要现在的默认IP为`192.168.1.11`,不需要更改的加`#`注释就可以。
-- 自定义编译的方法可以搭配使用，自己需要的服务一般不会随意变化，就可以在 `make menuconfig` 选好（新手参考[OpenWrt MenuConfig设置和LuCI插件选项说明](https://mtom.ml/827.html)）后执行 `./scripts/diffconfig.sh > seed.config` 复制一下这个`seed.config`的文本内容到项目根目录的`.config`文件中，这样就不用每次都SSH连接到 Actions生成编译配置，真正一键编译。
-- 另外如果，使用“files 大法”仓库最好设为私有，否则你的配置信息，如宽带账号等会公开在网上。
-- 如果需要可以编写多个`workflows`文件对应`###.config`，开启多流程同时编译。
-
-## 配置说明
-
-- 若 Fork 项目，请修改代码中自己的 TOKEN ( 项目 Settings/Secrets )
-- 将需要的机型配置文件复制到根目录下(包含文件夹) 或者 直接修改`./github/workflows`下的配置文件目录地址
-
-| TOKEN             | 释义                                                            |
+28
+-Modify the `feeds.conf.default` configuration by modifying the `diy-part1.sh` file . Add `fw876/helloworld` by default
+29
+-You can customize the default IP, login password, etc. by modifying the `diy-part2.sh` file. According to my needs, the current default IP is `192.168.1.11` , and the comments with `#` can be added if there is no need to change it.
+30
+-The custom compilation method can be used together. Generally, the services you need will not change at will, you can select it in `make menuconfig` (for newbies, please refer to [OpenWrt MenuConfig settings and LuCI plug-in option description] (https://mtom.ml /827.html) ) and then execute `./scripts/diffconfig.sh> seed.config` to copy the text content of this `seed.config` to the `.config` file in the project root directory , so that you don’t have to do it every time SSH connects to Actions to generate compilation configuration, truly one-click compilation.
+31
+-In addition, if you use the "files Dafa" warehouse, it is best to make it private, otherwise your configuration information, such as broadband account numbers, will be publicly available online.
+32
+-If necessary, you can write multiple `workflows` files corresponding to `###.config` and enable multiple processes to compile at the same time.
+33
+​
+34
+## Configuration instructions
+35
+​
+36
+-If Fork project, please modify your own TOKEN in the code (Project Settings/Secrets)
+37
+-Copy the required model configuration files to the root directory (including folders) or directly modify the configuration file directory address under `./github/workflows`
+38
+​
+39
+| TOKEN | Interpretation |
+40
 | :---------------- | :-------------------------------------------------------------- |
-| -- EMAIL          | Github用户邮箱                                                  |
-| -- RELEASE_TOKEN  | 个人 Settings/Developer settings/Personal access tokens新建获取 |
-| -- TMP_LINK_TOKEN | TMP.link命令行上传文件-生成上传命令到剪贴板-token=xxxxxx        |
-| -- SCKEY          | Server酱SCKEY                                                   |
-
-## 功能
-
-- 可以支持两种种编译模式
-  1. 编译Lean源码(含Lienol Package)
-  2. 编译CTCGFW源码(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
-- 自动上传固件
-- 自动发布固件
-- 自动创建分支
-- 自动上传到TMP.link
-- 自动上传到奶牛快传
-
-## 变量
-
-| 变量名                                                      | 释义                                 |
+41
+| - EMAIL | Github user mailbox |
+42
+| - RELEASE_TOKEN | Personal Settings/Developer settings/Personal access tokens create new acquisition |
+43
+| - TMP_LINK_TOKEN | TMP.link command line upload file-generate upload command to clipboard-token=xxxxxx |
+44
+| - SCKEY | Server Sauce SCKEY |
+45
+​
+46
+## Features
+47
+​
+48
+-Can support two kinds of compilation modes
+49
+  1. Compile Lean source code (including Lienol Package)
+50
+  2. Compile CTCGFW source code (including Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
+51
+-Automatic firmware upload
+52
+-Automatic firmware release
+53
+-Automatic branch creation
+54
+-Automatic upload to TMP.link
+55
+-Automatically upload to Cow Express
+56
+​
+57
+## Variable
+58
+​
+59
+| Variable name | Interpretation |
+60
 | :---------------------------------------------------------- | :----------------------------------- |
-| -- REPO_URL: <https://github.com/coolsnowwolf/lede.git>     | 定义源码                             |
-| -- REPO_BRANCH: master                                      | 定义分支                             |
-| -- FEEDS_CONF: feeds.conf.default                           | 自定义 feeds 配置文件                |
-| -- CONFIG_FILE: *.config                                     | 自定义编译配置                       |
-| -- DIY_P1_SH: diy-part1.sh                                  | 定义`feeds.conf.default`脚本文件     |
-| -- DIY_P2_SH: diy-part2.sh                                  | 定义自定义默认IP，登陆密码等脚本文件 |
-| -- SSH_ACTION: false                                        | 是否打开 SSH                         |
-| -- UPLOAD_BRANCH: true                                      | 是否创建分支来存放编译固件及Package  |
-| -- BRANCH: Lean｜Snapshot                                   | 分支名称                             |
-| -- GITHUB_USER_NAME: Draco-china                            | 定义Github用户名                     |
-| -- GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}                  | 定义Github用户邮箱                   |
-| -- GITHUB: github.com/Draco-china/OpenWrt-Actions-R7800.git | 定义上传分支                         |
-| -- UPLOAD_FIRMWARE: true                                    | 是否上传固件                         |
-| -- UPLOAD_COWTRANSFER: false                                | 是否上传固件到奶牛快传               |
-| -- UPLOAD_TMP_LINK: false                                   | 上传到TMP.link                       |
-| -- CREATE_RELEASE: true                                     | 是否创建发行版本 Release             |
-| -- BUILD_USER: Draco-china                                  | 定义编译者                           |
-| -- SEND_WECHAT_MSG: false                                   | 是否微信通知                         |
-
-## 来杯咖啡
-
+61
+| - REPO_URL: < https://github.com/coolsnowwolf/lede.git >      | Define source code |
+62
+| - REPO_BRANCH: master | Define branch |
+63
+| - FEEDS_CONF: feeds.conf.default | Custom feeds configuration file |
+64
+| - CONFIG_FILE: *.config | Custom compilation configuration |
+65
+| - DIY_P1_SH: diy-part1.sh | Define `feeds.conf.default` script file |
+66
+| - DIY_P2_SH: diy-part2.sh | Define custom default IP, login password and other script files |
+67
+| - SSH_ACTION: false | Whether to open SSH |
+68
+| - UPLOAD_BRANCH: true | Whether to create a branch to store the compiled firmware and package |
+69
+| - BRANCH: Lean｜Snapshot | Branch name |
+70
+| - GITHUB_USER_NAME: Draco-china | Define Github username |
+71
+| - GITHUB_USER_EMAIL: ${{ secrets.EMAIL }} | Define Github user mailbox |
+72
+| - GITHUB: github.com/Draco-china/OpenWrt-Actions-R7800.git | Define upload branch |
+73
+| - UPLOAD_FIRMWARE: true | Whether to upload firmware |
+74
+| - UPLOAD_COWTRANSFER: false | Whether to upload the firmware to Cow Express |
+75
+| - UPLOAD_TMP_LINK: false | Upload to TMP.link |
+76
+| - CREATE_RELEASE: true | Whether to create a release version Release |
+77
+| - BUILD_USER: Draco-china | Define compiler |
+78
+| - SEND_WECHAT_MSG: false | Whether to notify on WeChat |
+79
+​
+80
+## Come a cup of coffee
+81
+​
+82
 ![](https://github.com/Draco-china/OpenWrt-Actions-LeanAndSnapshot/blob/master/.github/Sponsor.png)
+83
